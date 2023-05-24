@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-from smartfields import fields
-
 
 class MyAccountManager(BaseUserManager):
 
@@ -96,10 +94,8 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(Account, on_delete=models.CASCADE, verbose_name='Пользователь')
     address = models.CharField(max_length=255, blank=True, verbose_name='Адрес')
-    profile_picture = fields.ImageField(blank=True,
-                                        default='user_profile/default.png',
-                                        upload_to='user_profile',
-                                        verbose_name='Фото')
+    profile_picture = models.ImageField(blank=True, default='user_profile/default.png',
+                                        upload_to='user_profile', verbose_name='Фото')
     city = models.CharField(max_length=255, blank=True, verbose_name='Город')
     state = models.CharField(max_length=255, blank=True, verbose_name='Область')
     country = models.CharField(max_length=255, blank=True, verbose_name='Страна')
